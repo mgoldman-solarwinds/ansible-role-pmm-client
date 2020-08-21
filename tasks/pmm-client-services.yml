@@ -16,10 +16,11 @@
   with_items: "{{ pmm_client_add_service }}"
   when: >
          (( item in services_running.results.0.stdout_lines) or ( item in services_added.results.0.stdout_lines)) and 
-         (('linux:metrics' in item) or ('proxysql:metrics' in item))
+         (('linux:metrics' in item) or ('proxysql:metrics' in item)) and
+         "mysql" not in pmm_client_add_service
 
 - name: Checking for MySQL metrics to be added
-  command: "pmm-admin add mysql --password {{ pmm_client_db_password }}"
+  command: "pmm-admin add mysql --username={{ pmm_client_db_username }} --password={{ pmm_client_db_password }}"
   when:  '"mysql" not in services_added.results.0.stdout_lines and "mysql" in pmm_client_add_service'
 
 - name: Removing services as defined in pmm_client_remove_service
