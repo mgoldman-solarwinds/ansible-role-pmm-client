@@ -103,8 +103,8 @@ pmm_client_add_service:
 ## Define services to be removed in a list ( eg: mysql, linux:metrics, mysql:metrics etc )
 pmm_client_remove_service: []
 
-pmm_client_db_username: root
-pmm_client_db_password: admin
+pmm_client_db_username: pmm
+pmm_client_db_password: ''
 
 ## Define List of services to be stopped or started ( eg: mysql, linux:metrics, mongdb:metrics etc )
 pmm_client_service_start: []
